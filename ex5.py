@@ -4,7 +4,7 @@ class Array_Queue:
         self.capacity = capacity
         self.size = 0
         self.tail = -1
-        self.head = 0
+        self.head = -1
         
     def empty(self):
         if self.size == 0:
@@ -41,12 +41,17 @@ class Array_Queue:
     def dequeue(self):
         if self.size == 0:
             return "Dequeue None"
+        if self.size == 1:
+            item = self.items[self.head]
+            self.items[self.head] = None
+            self.head = self.tail = -1
+            self.size -= 1
         else:
             item = self.items[self.head]
             self.items[self.head] = None
             self.head = (self.head + 1) % self.capacity
             self.size -= 1
-            return "Dequeue " + str(item)    
+        return "Dequeue " + str(item)    
         
    
         
@@ -94,12 +99,6 @@ class LL_Queue:
             return "Empty"
         else:
             return "Not Empty"
-        
-    def full(self):
-        if self.head is None:
-            return "Full"
-        else:
-            return "Not Full"
     
     
 
@@ -111,6 +110,7 @@ if __name__ == '__main__':
     print(Array_Queue.empty())
     print(Array_Queue.full())
     print(Array_Queue.enqueue(1))
+    print(Array_Queue.dequeue())
     print(Array_Queue.enqueue(2))
     print(Array_Queue.enqueue(3))
     print(Array_Queue.peek())
@@ -119,6 +119,7 @@ if __name__ == '__main__':
     print(Array_Queue.enqueue(6))
     print(Array_Queue.peek())
     print(Array_Queue.enqueue(7))
+    print(Array_Queue.enqueue(8))
     print(Array_Queue.dequeue())
     print(Array_Queue.dequeue())
     print(Array_Queue.peek())
