@@ -93,7 +93,30 @@ measure_performance()
 
 """
 Discussion:
-- PriorityQueueSort: Enqueue is O(n log n) due to mergesort, dequeue is O(1).
-- PriorityQueueInsert: Enqueue is O(n) due to sorted insert, dequeue is O(1).
-- Since enqueue occurs 70% of the time, PriorityQueueInsert is generally faster.
+The results from the performance measurements show that the PriorityQueueInsert implementation is significantly 
+faster than PriorityQueueSort.
+
+1. PriorityQueueSort (O(n log n) enqueue, O(1) dequeue)
+   - In this implementation, every enqueue() operation appends the new element and then sorts the entire list using merge sort.
+     This results in an O(n log n) complexity for each insertion - inefficient.
+   - dequeue() is efficient at O(1) because it removes the first element.
+
+2. PriorityQueueInsert (O(n) enqueue, O(1) dequeue):
+   - This implementation inserts each element directly into its correct position, ensuring that the list remains sorted 
+     at all times. The insertion takes O(n) time in the worst case but avoids the overhead of sorting the entire
+     array repeatedly.
+   - dequeue() is O(1) since the first element is removed.
+
+Performance Comparison:
+- Given that 70% of the operations are enqueue operations, the repeated sorting in PriorityQueueSort significantly
+  increases its runtime.
+- The experimental results confirm this inefficiency, with PriorityQueueSort taking ~27 seconds, whereas PriorityQueueInsert
+  completes in ~0.3 seconds, making it ~90 times faster.
+
+Which Implementation is Better?
+- If frequent insertions and removals are required, PriorityQueueInsert is a much better choice because it avoids
+  sorting operations.
+- However, if enqueue operations are rare and the queue needs to be sorted only occasionally, PriorityQueueSort may
+  still be an option. Ie depends on the project requirements asked of you as the developer. 
+
 """
