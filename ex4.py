@@ -89,4 +89,4 @@ plt.title("Performance Comparison of Queue Implementations")
 plt.show()
 
 # Discussion
-print("Array-based queue is usually slower because inserting at the head is O(n), whereas in a linked list, it's O(1). ")
+print("Linked-list based queue is usually slower due to the overhead incurred by implementing a linked list and creating new nodes compared to using Python's built in List which is fast at inserting/removing data. This is seen in the graph.")
